@@ -7,7 +7,7 @@
   <body>
     <script type="text/javascript">
       let random = Math.floor((Math.random()*3)+1);
-      const computerSelection = computerPlay();
+      let computerSelection = computerPlay();
       let playerSelection = prompt("What is your choice, rock, paper, or scissors?");
       playerSelection = playerSelection.toLowerCase();
       if ((playerSelection !== "rock") && (playerSelection !== "paper") && (playerSelection !== "scissors")) {playerSelection = prompt("Please choose only between rock, paper, or scissors.");}
@@ -20,14 +20,16 @@
   }
 }
       function playRound() {
-        if (Object.is(playerSelection, computerSelection)) {return "Try once more!";
+        if (Object.is(playerSelection, computerSelection)) {return "you should try once more!";
       } else if ((playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "paper")) {
-        return "Player wins!";
-      } else { return "Computer wins!";
+        return "you win!";
+      } else { return "the computer wins!";
       }
       }
 
-      console.log(playerSelection, computerSelection, playRound());
+      console.log("You chose " + playerSelection + ", the computer chose " + computerSelection + ". That means " + playRound());
+
+
     </script>
   </body>
 </html>
