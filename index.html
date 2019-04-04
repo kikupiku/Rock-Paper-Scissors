@@ -6,30 +6,67 @@
   </head>
   <body>
     <script type="text/javascript">
+      let playerPoints = 0;
+      let computerPoints = 0;
+
+    function game() {
+      for (let i=0; i<5; i++) {
       let random = Math.floor((Math.random()*3)+1);
       let computerSelection = computerPlay();
       let playerSelection = prompt("What is your choice, rock, paper, or scissors?");
       playerSelection = playerSelection.toLowerCase();
-      if ((playerSelection !== "rock") && (playerSelection !== "paper") && (playerSelection !== "scissors")) {playerSelection = prompt("Please choose only between rock, paper, or scissors.");}
+
+
+      function getPlayerSelect () {
+        while ((playerSelection !== "rock") && (playerSelection !== "paper") && (playerSelection !== "scissors")) {
+          playerSelection = prompt("Please choose only between rock, paper, or scissors.");
+        }
+      }
+
+      getPlayerSelect();
+
       playerSelection = playerSelection.toLowerCase();
 
       function computerPlay() {
-        if (random ==1) { return "rock";
-      } else if (random ==2) { return "paper";
-    } else { return "scissors";
-  }
-}
+        if (random == 1) {
+          return "rock";
+        } else if (random == 2) {
+          return "paper";
+        } else {
+          return "scissors";
+        }
+      }
+
+
+
       function playRound() {
-        if (Object.is(playerSelection, computerSelection)) {return "you should try once more!";
-      } else if ((playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "paper")) {
-        return "you win!";
-      } else { return "the computer wins!";
+        if (Object.is(playerSelection, computerSelection)) {
+          return "you should try once more!";
+        } else if ((playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "paper")) {
+          playerPoints++;
+          return "you win!";
+        } else {
+          computerPoints++;
+          return "the computer wins!";
+        }
+
       }
+      let roundResult = playRound();
+
+      console.log(playerPoints, computerPoints, "You chose " + playerSelection + ", the computer chose " + computerSelection + ". That means " + roundResult);
       }
-
-      console.log("You chose " + playerSelection + ", the computer chose " + computerSelection + ". That means " + playRound());
-
-
+    }
+    game();
+    function winner() {
+      if (playerPoints>computerPoints) {
+        return "Player wins!";
+      } else if (playerPoints < computerPoints){
+        return "Computer wins!";
+      } else {
+        return "It's a tie (for some reason)!";
+      }
+    }
+    console.log(winner());
     </script>
   </body>
 </html>
