@@ -7,13 +7,27 @@
   <body>
     <script type="text/javascript">
       let random = Math.floor((Math.random()*3)+1);
+      const computerSelection = computerPlay();
+      let playerSelection = prompt("What is your choice, rock, paper, or scissors?");
+      playerSelection = playerSelection.toLowerCase();
+      if ((playerSelection !== "rock") && (playerSelection !== "paper") && (playerSelection !== "scissors")) {playerSelection = prompt("Please choose only between rock, paper, or scissors.");}
+      playerSelection = playerSelection.toLowerCase();
+
       function computerPlay() {
-        if (random ==1) { return "Rock";
-      } else if (random ==2) { return "Paper";
-    } else { return "Scissors";
+        if (random ==1) { return "rock";
+      } else if (random ==2) { return "paper";
+    } else { return "scissors";
   }
 }
-        console.log(computerPlay());
+      function playRound() {
+        if (Object.is(playerSelection, computerSelection)) {return "Try once more!";
+      } else if ((playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "paper")) {
+        return "Player wins!";
+      } else { return "Computer wins!";
+      }
+      }
+
+      console.log(playerSelection, computerSelection, playRound());
     </script>
   </body>
 </html>
