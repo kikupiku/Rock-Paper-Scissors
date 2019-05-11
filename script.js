@@ -17,6 +17,7 @@ roundResultsDiv.setAttribute('style', 'white-space: pre;');
 body.appendChild(roundResultsDiv);
 
 let endResult = document.createElement('p');
+let newStart = document.createElement('p');
 
 rock.addEventListener('click', () => {
   magicallyOptimize("rock");
@@ -35,15 +36,16 @@ function magicallyOptimize(choiceString) {
   playerSelection = choiceString;
   if (document.body.contains(endResult)) {
     body.removeChild(endResult);
+    body.removeChild(newStart);
   }
   compSelect = ["rock", "paper", "scissors"][Math.floor((Math.random()*2))]
   //console.log(playerSelection + " " + compSelect);
   let roundUp = playRound();
   let andTheResultIs = "Round " + (roundsPlayed+1) + "\r\n" + "You chose "
                         + playerSelection + ", the computer chose "
-                        + compSelect + ". That means " + roundUp + " this round."
-                        + "\r\n" + "So far you have won " + playerPoints + " rounds. "
-                        + " The computer has won " + computerPoints + " rounds.";
+                        + compSelect + ". " + roundUp + " this round."
+                        + "\r\n" + "So far you have won " + playerPoints
+                        + " rounds. The computer has won " + computerPoints + " rounds.";
   //console.log(andTheResultIs);
   roundResultsDiv.textContent = andTheResultIs;
   roundsPlayed++;
@@ -52,15 +54,15 @@ function magicallyOptimize(choiceString) {
 
 function playRound() {
   if (playerSelection === compSelect) {
-    return "neither of you wins";
+    return "Neither of you wins";
   } else if ((playerSelection == "paper" && compSelect == "rock") ||
       (playerSelection == "rock" && compSelect == "scissors") ||
       (playerSelection == "scissors" && compSelect == "paper")) {
        playerPoints++;
-    return "you win";
+    return "You win";
   } else {
     computerPoints++;
-    return "the computer wins";
+    return "The computer wins";
   }
 }
 
@@ -76,8 +78,11 @@ function winner() {
 
 function sayWhoWins(who) {
   endResult.textContent = who;
+  newStart.textContent = "Make a new choice to start over!";
   body.appendChild(endResult);
+  body.appendChild(newStart);
   playerPoints = 0;
   computerPoints = 0;
   roundsPlayed = 0;
+
 }
