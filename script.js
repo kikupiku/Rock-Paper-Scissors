@@ -67,7 +67,6 @@ function playRound() {
 function winner() {
   if (playerPoints>computerPoints) {
     sayWhoWins("You win the game!");
-
   } else if (playerPoints < computerPoints){
     sayWhoWins("Computer wins the game!");
   } else {
@@ -80,4 +79,5 @@ function sayWhoWins(who) {
   body.appendChild(endResult);
   playerPoints = 0;
   computerPoints = 0;
+  roundsPlayed = 0;
 }
